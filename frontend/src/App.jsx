@@ -2,13 +2,15 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
-import Login from "./pages/Login/Login;";
+import Login from "./pages/Login/Login";
 import Collection from "./pages/Collection/Collection";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
