@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import { useParams } from "react-router-dom";
+import "./ProductDetailc.css";
 
 const ProductDetails = () => {
   const { products, currency } = useContext(ShopContext);
