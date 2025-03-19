@@ -59,7 +59,7 @@ const ProductDetails = () => {
             <div className="size-selector">
               <p>Select size</p>
               <div className="size-bottoms">
-                {productData.sizes.map((item, index) => {
+                {productData.sizes.map((item, index) => (
                   <button
                     key={index}
                     onClick={() => setSize(item)}
@@ -68,8 +68,8 @@ const ProductDetails = () => {
                     }`}
                   >
                     {item}
-                  </button>;
-                })}
+                  </button>
+                ))}
               </div>
             </div>
             <hr className="product-devider" />
