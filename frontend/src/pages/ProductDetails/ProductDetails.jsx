@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import { useParams } from "react-router-dom";
 import "./ProductDetailc.css";
+import RelatedProduct from "../../components/RelatedProduct/RelatedProduct";
 
 const ProductDetails = () => {
   const { products, currency } = useContext(ShopContext);
@@ -98,6 +99,7 @@ const ProductDetails = () => {
             </p>
           </div>
         </div>
+        <RelatedProduct category={productData.category} />
       </div>
     </div>
   ) : (
