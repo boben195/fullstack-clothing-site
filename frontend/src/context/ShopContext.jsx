@@ -6,6 +6,7 @@ export const ShopContext = createContext();
 
 const ShopContextProvider = ({ children }) => {
   const currency = "$";
+  const delivery_fee = 20;
 
   const [cartItems, setCartItems] = useState({});
 
@@ -75,6 +76,7 @@ const ShopContextProvider = ({ children }) => {
     updateQuantity,
     getCartAmount,
     cartItems,
+    delivery_fee,
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
