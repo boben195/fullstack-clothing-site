@@ -1,32 +1,32 @@
 import React, { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
+import "./CartTotal.css";
 
 const CartTotal = () => {
   const { currency, getCartAmount, delivery_fee } = useContext(ShopContext);
   return (
     <div>
-      <div className="cart-total-container">
-        <div className="cart-title">
+      <div className="card-total-container">
+        <div className="card-title">
           <h2>CART TOTAL</h2>
         </div>
-        <div className="cart-total-details">
-          <div className="cart-row">
+        <div className="card-details">
+          <div className="card-row">
             <p>Subtotal</p>
             <p>
               {currency}
               {getCartAmount()}
             </p>
-            <p></p>
           </div>
-          <hr className="cart-devider" />
-          <div className="cart-row">
+          <hr className="card-divider" />
+          <div className="card-row">
             <p>Shipping Fee</p>
             <p>
               {currency}
               {delivery_fee}
             </p>
           </div>
-          <div className="cart-row cart-total">
+          <div className="card-row card-total">
             <b>Total</b>
             <b>
               {currency}
