@@ -12,7 +12,7 @@ productRouter.post("/add", upload.fields([
     {name: "image4", maxCount: 1},
 ]), addProduct);
 productRouter.get("/list", listProduct);
-productRouter.post("/remove", removeProduct);
+productRouter.delete("/remove", removeProduct);
 productRouter.get("/single", singleProduct);
 
 export default productRouter;
