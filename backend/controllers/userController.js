@@ -63,14 +63,47 @@ const registerUser = async (req, res) => {
 }
 
 
-const adminLogin = async (req, res) => {
+// const adminLogin = async (req, res) => {
     
+//     try {
+//         const { email, password } = req.body;
+//         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+//             const token = jwt.sign({email} , process.env.JWT_SECRET, {expiresIn: "2h"})
+//             res.json({success: true, token})
+//         } else {
+//             res.status(401).json({ success: false, message: "Invalid credentials" });
+//         }
+        
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ success: false, message: "Server error" });
+//     }
+// }
+
+
+const adminLogin = async (req, res) => {
     try {
+        const { email, password } = req.body;
+
         
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            const token = jwt.sign(
+                { email },  
+                process.env.JWT_SECRET,
+                { expiresIn: "2h" } 
+            );
+
+            return res.json({ success: true, token });
+        } 
+
+        
+        res.status(401).json({ success: false, message: "Invalid credentials" });
+
     } catch (error) {
-        
+        console.error(error);
+        res.status(500).json({ success: false, message: "Server error" });
     }
-}
+};
 
 
 export {loginUser, registerUser, adminLogin}
