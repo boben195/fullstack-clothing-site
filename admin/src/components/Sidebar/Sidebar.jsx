@@ -4,6 +4,8 @@ import { MdAddShoppingCart, MdFormatListBulletedAdd } from "react-icons/md";
 import { IoIosLogOut, IoMdAddCircleOutline } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 
+import "./Sidebar.css";
+
 const Sidebar = () => {
   return (
     <div className="sidebar-container">
