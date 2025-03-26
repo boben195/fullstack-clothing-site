@@ -14,8 +14,28 @@ const Add = () => {
   const [bestseller, setBestseller] = useState(false);
   const [sizes, setSizes] = useState([]);
 
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("category", category);
+      formData.append("bestseller", bestseller);
+      formData.append("sizes", JSON.stringify(sizes));
+
+      image1 && formData.append("image1", image1 ? image1 : null);
+      image2 && formData.append("image2", image2 ? image2 : null);
+      image3 && formData.append("image3", image3 ? image3 : null);
+      image4 && formData.append("image4", image4 ? image4 : null);
+    } catch (error) {
+      console.error("Something go wrong! Booooo!!!", error);
+    }
+  };
+
   return (
-    <form action="">
+    <form onSubmit={onSubmitHandler} className="form-container">
       <div>
         <p className="form-label">Upload images</p>
         <div className="image-upload-container">
@@ -77,6 +97,8 @@ const Add = () => {
         <p className="form-label">Product name</p>
         <input
           type="text"
+          onChange={(e) => setName(e.target.value)}
+          value={name}
           className="form-input"
           placeholder="Enter product name"
           required
@@ -86,6 +108,8 @@ const Add = () => {
         <p className="form-label">Product description</p>
         <textarea
           type="text"
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
           className="form-input"
           placeholder="Type product description"
           required
@@ -94,7 +118,11 @@ const Add = () => {
       <div className="form-group-gorizontal">
         <div>
           <p className="form-label">Product category</p>
-          <select className="form-select">
+          <select
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
+            className="form-select"
+          >
             <option value="Men">Men</option>
             <option value="Women">Women</option>
             <option value="Kids">Kids</option>
@@ -104,6 +132,8 @@ const Add = () => {
           <p className="form-label">Product price</p>
           <input
             type="number"
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
             className="form-input price-input"
             placeholder="30"
           />
@@ -132,7 +162,12 @@ const Add = () => {
         </div>
       </div>
       <div className="checkbox">
-        <input type="checkbox" id="bestseller" />
+        <input
+          onChange={() => setBestseller((prev) => !prev)}
+          checked={bestseller}
+          type="checkbox"
+          id="bestseller"
+        />
         <label htmlFor="bestseller">Add to bestseller</label>
       </div>
       <button type="submit">ADD PRODUCT</button>
