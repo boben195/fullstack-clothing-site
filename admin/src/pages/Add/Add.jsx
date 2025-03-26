@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import upload from "../../assets/upload.jpg";
 import "./Add.css";
+import axios from "axios";
+import { backendUrl } from "../../App";
+import { toast } from "react-toastify";
 
-const Add = () => {
+const Add = ({ token }) => {
   const [image1, setImage1] = useState(false);
   const [image2, setImage2] = useState(false);
   const [image3, setImage3] = useState(false);
@@ -30,6 +33,13 @@ const Add = () => {
       image2 && formData.append("image2", image2 ? image2 : null);
       image3 && formData.append("image3", image3 ? image3 : null);
       image4 && formData.append("image4", image4 ? image4 : null);
+
+      const response = await axios.post(
+        backendUrl + "/api/product/add",
+        formData,
+        { headers: { token } }
+      );
+      console.log(response.data);
     } catch (error) {
       console.error("Something go wrong! Booooo!!!", error);
     }
@@ -166,6 +176,7 @@ const Add = () => {
         <input
           onChange={() => setBestseller((prev) => !prev)}
           checked={bestseller}
+          className="checkbox-input"
           type="checkbox"
           id="bestseller"
         />
