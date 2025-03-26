@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import Add from "./pages/Add/Add";
@@ -9,7 +9,11 @@ import Login from "./components/Login/Login";
 export const backendUrl = "http://localhost:4000";
 
 const App = () => {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token" || ""));
+
+  useEffect(() => {
+    localStorage.setItem("token", token);
+  }, [token]);
 
   return (
     <div className="app-container">
@@ -18,7 +22,7 @@ const App = () => {
       ) : (
         <>
           <div className="app-content">
-            <Sidebar />
+            <Sidebar setToken={setToken} />
             <div className="page-content">
               <Routes>
                 <Route path="/add" element={<Add />} />

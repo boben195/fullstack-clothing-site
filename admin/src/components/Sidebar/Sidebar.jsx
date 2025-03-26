@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 import "./Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ setToken }) => {
   return (
     <div className="sidebar-container">
       <div className="sidebar-header">
@@ -26,7 +26,7 @@ const Sidebar = () => {
           <MdAddShoppingCart className="sidebar-icon" />
           <p className="sidebat-text">Orderrs</p>
         </NavLink>
-        <button className="sidebar-link">
+        <button onClick={() => setToken("")} className="sidebar-link">
           <IoIosLogOut className="sidebar-icon" />
           <p className="sidebat-text">Logout</p>
         </button>
