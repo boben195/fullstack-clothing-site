@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import upload from "../../assets/upload.jpg";
+import "./Add.css";
 
 const Add = () => {
   const [image1, setImage1] = useState(false);
@@ -141,7 +142,7 @@ const Add = () => {
       </div>
       <div>
         <p className="form-label">Product Sizes</p>
-        <div className="size-option">
+        <div className="size-options">
           {["S", "M", "L", "XL", "XXL"].map((size) => (
             <div
               key={size}
@@ -170,7 +171,9 @@ const Add = () => {
         />
         <label htmlFor="bestseller">Add to bestseller</label>
       </div>
-      <button type="submit">ADD PRODUCT</button>
+      <button className="submit-btn" type="submit">
+        ADD PRODUCT
+      </button>
     </form>
   );
 };
