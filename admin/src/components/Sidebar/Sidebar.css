@@ -11,6 +11,7 @@
 }
 .side-logo {
     font-size: 35px;
+    margin-top: 18px;
 }
 .sidebar-header h2 {
     font-size: 30px;
@@ -44,7 +45,10 @@
     display: none;
     font-size: 0.975rem;
 }
-
+button {
+    border: none;
+    background-color: white;
+}
 @media (min-width: 768px) {
     .sidebat-text {
         display: block;

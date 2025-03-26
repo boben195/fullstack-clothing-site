@@ -11,6 +11,7 @@ const Sidebar = () => {
     <div className="sidebar-container">
       <div className="sidebar-header">
         <FaCentos className="side-logo" />
+        <h2>Stylewave</h2>
       </div>
       <div className="sidebar-links">
         <NavLink className="sidebar-link" to="/add">
