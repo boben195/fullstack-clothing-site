@@ -1,15 +1,29 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./Login.css";
+import { backendUrl } from "../../App";
 
-const Login = () => {
+const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const onSubmitHandler = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
-      console.log(email, password);
-    } catch (error) {}
+      const response = await axios.post(backendUrl + "/api/user/admin", {
+        email,
+        password,
+      });
+
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.token);
+        setToken(response.data.token);
+      } else {
+        console.log("Login failed:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Login Error:", error);
+    }
   };
   return (
     <div>
