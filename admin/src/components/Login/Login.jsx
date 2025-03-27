@@ -16,13 +16,13 @@ const Login = ({ setToken }) => {
       });
 
       if (response.data.success) {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("adminToken", response.data.token);
         setToken(response.data.token);
       } else {
-        console.log("Login failed:", response.data.message);
+        console.error("Login failed:", response.data.message);
       }
     } catch (error) {
-      console.error("Login Error:", error);
+      console.error("Login error:", error);
     }
   };
   return (

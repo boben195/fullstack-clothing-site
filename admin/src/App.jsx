@@ -9,7 +9,7 @@ import Login from "./components/Login/Login";
 export const backendUrl = "http://localhost:4000";
 
 const App = () => {
-  const [token, setToken] = useState(localStorage.getItem("token" || ""));
+  const [token, setToken] = useState(localStorage.getItem("adminToken") || "");
 
   useEffect(() => {
     localStorage.setItem("token", token);

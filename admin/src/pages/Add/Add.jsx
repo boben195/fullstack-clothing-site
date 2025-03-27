@@ -37,11 +37,19 @@ const Add = ({ token }) => {
       const response = await axios.post(
         backendUrl + "/api/product/add",
         formData,
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(response.data);
     } catch (error) {
       console.error("Something go wrong! Booooo!!!", error);
+
+      if (error.response) {
+        console.error("🛑 Server Response Error:", error.response.data);
+      } else if (error.request) {
+        console.error("🚨 No Response from Server:", error.request);
+      } else {
+        console.error("❌ Request Setup Error:", error.message);
+      }
     }
   };
 
