@@ -40,6 +40,20 @@ const Add = ({ token }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(response.data);
+      //Cheak code beloung this line********************************
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setName("");
+        setDescription("");
+        setPrice("");
+        setImage1(false);
+        setImage2(false);
+        setImage3(false);
+        setImage4(false);
+      } else {
+        toast.error(response.data.message);
+      }
+      //Check up ************************************************
     } catch (error) {
       console.error("Something go wrong! Booooo!!!", error);
 
