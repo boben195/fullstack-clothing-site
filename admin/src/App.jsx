@@ -7,6 +7,7 @@ import Orders from "./pages/Orders/Orders";
 import Login from "./components/Login/Login";
 
 export const backendUrl = "http://localhost:4000";
+export const currency = "$";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("adminToken") || "");
