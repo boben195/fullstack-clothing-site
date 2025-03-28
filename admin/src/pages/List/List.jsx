@@ -8,16 +8,22 @@ const List = ({ token }) => {
   const [list, setList] = useState([]);
   const fetchList = async () => {
     try {
-      const response = await axios.get(backendUrl + "/api/product/list", {
+      if (!token) {
+        toast.error("Authentication token missing!");
+        return;
+      }
+
+      const response = await axios.get(`${backendUrl}/api/product/list`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       if (response.data.success) {
         setList(response.data.products);
       } else {
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.message);
     }
   };
@@ -25,12 +31,12 @@ const List = ({ token }) => {
   const removeProduct = async (_id) => {
     try {
       const response = await axios.delete(
-        backendUrl + "/api/product/remove",
-        { _id },
+        `${backendUrl}/api/product/remove/${_id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+
       if (response.data.success) {
         toast.success(response.data.message);
         console.log(response.data.message);
@@ -68,7 +74,10 @@ const List = ({ token }) => {
               {currency}
               {item.price}
             </p>
-            <MdDeleteForever className="product-action" />
+            <MdDeleteForever
+              onClick={() => removeProduct(item._id)}
+              className="product-action"
+            />
           </div>
         ))}
       </div>
